@@ -1,0 +1,48 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    width: 500px;
+    margin: 20px auto;
+}
+
+main {
+    border: 1px solid #CCC;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+header {
+    font-size: 20px;
+    text-align: center;
+    color: red;
+    text-transform: uppercase;
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+input {
+    width: 280px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+button {
+    background-color: #555;
+    padding: 7px;
+    width: 120px;
+    color: #FFF;
+    border: 0;
+}
