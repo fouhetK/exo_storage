@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="assets/style.css"/>
+    <script src="assets/ajax.js"></script>
+    
+</head>
+<header>
+    <h1>Test header</h1>
+</header>
+<body>
+    <nav>
+        <ul>
+            <li><a href="">test1</a></li>
+            <li><a href="">test2</a></li>
+            <li><a href="">test3</a></li>
+        </ul>
+    </nav>
+    <form method="post">
+        <table cellpadding="5" cellspacing="5" align="center" >
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        <h1>Formulaire d'inscription</h1>
+                    <hr>
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><label for="nomId" class="border2">Nom *:</label></td>
+                    <td><input type="text" id="nomId" name="nom" placeholder="Votre nom" /></td>
+                </tr>
+                <tr>
+                    <td><label for="prenomId">Prenom *:</label></td>
+                    <td><input type="text" id="prenomId" name="prenom" placeholder="Votre prénom"/></td>
+                </tr>
+                <tr>
+                    <td><label for="dateId">Date de naissance *:</label></td>
+                    <td><input type="date" id="dateId" name="date" placeholder="dd/mm/yyyy" size="100%"/></td>
+                </tr>
+                <tr>
+                    <td><label for="adresseId">Adresse *:</label></td>
+                    <td><input type="text" id="adresseId" name="adresse" placeholder="Votre adresse" /></td>
+                </tr>
+                <tr>
+                    <td><label for="pays_select">Pays *:</label></td>
+                    <td>
+                        <select name="pays" id="pays_select" onchange="load(this)">
+                            <option value="">--choisisser un pays--</option>
+                            <option value="fra">France</option>
+                            <option value="ang">Angletaire</option>
+                            <option value="ita">Italie</option>
+                            <!-- 
+                        <option value="angletaire">Angletaire</option>
+                        <option value="allemagne">Allemagne</option>
+                        <option value="espagne">Espagne</option>
+                        <option value="italie">Italie</option>
+                        <option value="belgique">Belgique</option> -->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="ville_select">Ville *:</label></td>
+                    <td>
+                        <select name="ville" id="ville_select" disabled>
+                            <option value="">--choisisser une ville--</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" Value="ENVOYER"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center" ><button type="submit">ENVOYER</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>
