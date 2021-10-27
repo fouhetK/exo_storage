@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+label {
+	color: brown;
+}
+
+td {
+	background-color: rgb(172, 172, 172);
+}
+
+input {
+	background-color: green;
+	color: ivory;
+}
+
+::placeholder {
+	color: khaki;
+}
+
+button:hover {
+	color: orange;
+}
+
+input:hover::placeholder {
+	color: red;
+}
+
+input:hover {
+	color: blue;
+}
+
+button {
+	display: block;
+}
+
+div a { /* all a son of div, div>a only for dirrect son*/
+	color: blue;
+}
+
+tr, th {
+	color: blue;
+}
+
+.souligner {
+	text-decoration: underline;
+}
+
+.border2 {
+	border: solid 2px blue;
+}
+
+tr.border2 { /* all tr that have the border2 class*/
+	color: blue;
+}
