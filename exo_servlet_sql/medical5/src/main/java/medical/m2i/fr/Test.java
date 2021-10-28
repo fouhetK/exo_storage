@@ -2,10 +2,8 @@ package medical.m2i.fr;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.Date;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,54 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Test
  */
-@WebServlet("/bonjour")
+@WebServlet("/personne")
 public class Test extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	private static PersonneDAO personneDAO = new PersonneDAO();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Test() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	private void saveDB(String prenom, String nom, String date, String adresse, String pays, String ville) {
-
-		String url = "jdbc:mysql://localhost:3306/java_jee";
-		String user = "root";
-		String password = "";
-
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		try (Connection connection = DriverManager.getConnection(url, user, password);
-				PreparedStatement prepareStatementVoiture = connection.prepareStatement(
-						"INSERT INTO Personne (prenom, nom, datenaissance, adresse, pays, ville) VALUES(?,?,?,?,?,?)");) {
-
-			connection.setAutoCommit(false);
-
-			prepareStatementVoiture.setString(1, prenom);
-			prepareStatementVoiture.setString(2, nom);
-			prepareStatementVoiture.setString(3, date);
-			prepareStatementVoiture.setString(4, adresse);
-			prepareStatementVoiture.setString(5, pays);
-			prepareStatementVoiture.setString(6, ville);
-
-			System.out.println(prepareStatementVoiture.toString());
-
-			prepareStatementVoiture.executeUpdate();
-
-			connection.commit();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	/**
@@ -72,6 +33,31 @@ public class Test extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		response.setContentType("text/html");
+
+		PrintWriter out = response.getWriter();
+
+		out.println("<body><table>");
+		out.println(Personne.getHeadTab());
+		out.println("<tbody>");
+
+		Collection<Personne> personnes = personneDAO.findAll();
+
+		for (Personne personne : personnes) {
+			out.println(personne.toHTMLTable());
+		}
+
+		out.println("</tbody></table>");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 
 		System.out.println("Je suis bien dans la méthode post");
 
@@ -82,7 +68,9 @@ public class Test extends HttpServlet {
 		String pays = request.getParameter("pays");
 		String ville = request.getParameter("ville");
 
-		this.saveDB(prenom, nom, date, adresse, pays, ville);
+		Personne personne = new Personne(prenom, nom, Date.valueOf(date), adresse, pays, ville);
+
+		personneDAO.saveDB(personne);
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -95,16 +83,6 @@ public class Test extends HttpServlet {
 																								// ville
 		out.println(" </body >");
 		out.println(" </html >");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
